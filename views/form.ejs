@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Book a Cleaning</title>
+    <script type="text/javascript" src="/js/modernizr.custom.79639.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Pathway+Gothic+One|Peddana|Special+Elite" rel="stylesheet">
+<link rel="stylesheet" href="/css/service_new.css">
+</head>
+
+<body>
+
+<form action="/pay" method="post" id="bookingForm">
+
+    <div class="frm-box">
+        <div class="frm-header">
+            <h3 class="hdr-h3">Personal Information</h3>
+            <p class="hdr-p">Tell us how to contact you regarding your service and where you want us to clean.</p>
+        </div>
+
+        <div class="content">
+            <h4 class="frm-h4">Contact Information</h4>
+            <div class="form-first-last">
+                <input id="form_first_name" name="form_first_name" placeholder="First Name" class="ipt"
+                       type="text"
+                       autocomplete="off">
+
+                <input id="form_last_name" name="form_last_name" placeholder="Last Name" class="ipt" type="text"
+                       autocomplete="off">
+            </div>
+
+
+            <div class="form-usr-pass-ph">
+
+                <input id="form_username" name="username" placeholder="Email" class="ipt" type="text"
+                       autocomplete="off">
+
+                <input id="form_password" name="password" placeholder="Password" class="ipt" type="password"
+                       autocomplete="off">
+
+                <div id="phone">
+                    <input id="form_phone" name="form_phone" placeholder="Phone" class="ipt" type="text"
+                           autocomplete="off">
+                    <input id="form_phone_h" name="form_phone_h" type="hidden">
+                </div>
+            </div>
+
+
+            <div class="rdb-form">
+
+                    <input name="form_home" id="form_at_home" value="1" checked="checked" type="radio"
+                           autocomplete="off">
+                <label class="rdb" for="form_at_home"> I'll be home</label>
+
+                    <input name="form_home" id="form_keys_hidden" value="2" type="radio" autocomplete="off">
+                <label class="rdb" for="form_keys_hidden">I'll hide the key</label>
+                <input id="form_place_keys" name="form_place_keys" placeholder="Where?" class="ipt" type="text"
+                       autocomplete="off">
+            </div>
+
+            <div class="text">
+                <textarea class="" id="form_instructions" name="form_instructions"
+                          placeholder="Special Instructions" autocomplete="off"></textarea>
+            </div>
+
+
+            <div class="separa"></div>
+            <h4 class="frm-h4">Location of Place to Clean</h4>
+            <div class="">
+                <input id="form_apt" name="form_apt" placeholder="Apt #" class="ipt" type="text"
+                       autocomplete="off">
+            </div>
+            <div class="">
+                <input id="form_address" name="form_address" placeholder="Address" class="ipt" type="text"
+                       autocomplete="off">
+            </div>
+
+            <div id="city-state-zip">
+                <input id="form_city" name="form_city" placeholder="City" class="ipt" type="text"
+                       autocomplete="off">
+
+                <div id="form_state" class="wrapper-dropdown-3">
+                    <span id="form_input_state" class="wrapper-result">State</span>
+                    <input id="form_input_state_h" name="form_input_state_h" type="hidden">
+                    <ul class="dropdown" id="state_option">
+                        <li> <a id="ca" href="#">CA</a></li>
+                        <li> <a id="fl" href="#">FL</a></li>
+                        <li> <a id="ny" href="#">NY</a></li>
+                    </ul>
+                </div>
+
+
+                <input id="form_zipcode" name="form_zipcode" placeholder="Zip Code" class="ipt" type="text"
+                       autocomplete="off">
+                <input name="form_full_address" id="form_full_address" type="hidden">
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="frm-box">
+        <div class="frm-header">
+            <h3 class="hdr-h3">Service Information</h3>
+            <p class="hdr-p">Tell us what cleaning services you need and when you would like us to come.</p>
+        </div>
+        <div class="content">
+            <div class="">
+
+                <h4 class="frm-h4">Choose Your Service</h4>
+                <div class="" id="showhide_hourly">
+                    <div class="bd-bt">
+                        <div class="bd">
+                            <div id="form_bedroom" class="wrapper-dropdown-3" tabindex="1">
+                                <span id="form_input_bedroom" class="wrapper-result">Bedrooms</span>
+                                <input name="form_input_bedroom_h" id="form_input_bedroom_h" type="hidden">
+                                <ul class="dropdown" id="bedrooms">
+                                    <li id="bd-1"><a href="#">1 bedroom</a></li>
+                                    <li id="bd-2"><a href="#">2 bedrooms</a></li>
+                                    <li id="bd-3"><a href="#">3 bedrooms</a></li>
+                                    <li id="bd-4"><a href="#">4 bedrooms</a></li>
+                                    <li id="bd-5"><a href="#">5 bedrooms</a></li>
+                                    <li id="bd-6"><a href="#">6 bedrooms</a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                        <div class="bt">
+
+                            <div id="form_bathroom" class="wrapper-dropdown-3" tabindex="1">
+                                <span id="form_input_bathroom" class="wrapper-result">Bathrooms</span>
+                                <input name="form_input_bathroom_h" id="form_input_bathroom_h" type="hidden">
+                                <ul class="dropdown" id="bathrooms">
+                                    <li id="bt-1"><a href="#">1 bathroom</a></li>
+                                    <li id="bt-2"><a href="#">2 bathrooms</a></li>
+                                    <li id="bt-3"><a href="#">3 bathrooms</a></li>
+                                    <li id="bt-4"><a href="#">4 bathrooms</a></li>
+                                    <li id="bt-5"><a href="#">5 bathrooms</a></li>
+                                    <li id="bt-6"><a href="#">6 bathrooms</a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="separa"></div>
+                    <h4 class="frm-h4">Cleaning Frequency</h4>
+                    <div class="cleaning_frequency">
+                        <div class="btnmr">
+                            <button class="btn-form" id="one-time" data-val="1">One time</button>
+                        </div>
+                        <div class="btnmr">
+                            <button class="btn-form" id="week" data-val="2">Weekly</button>
+                        </div>
+                        <div class="btnmr">
+                            <button class="btn-form" id="biweek" data-val="3">Biweekly</button>
+                            <p id="most-pop">Most popular</p>
+                        </div>
+                        <div class="btnmr">
+                            <button class="btn-form" id="month" data-val="4">Monthly</button>
+                        </div>
+                        <div class="btnmr">
+                            <button class="btn-form" id="triweek" data-val="5">Tri-Weekly</button>
+                        </div>
+                        <input type="hidden" id="form_frequency" name="form_frequency" value="2"
+                               autocomplete="off">
+                    </div>
+
+
+                    <div class="separa"></div>
+
+                    <h4 class="frm-h4">Service Add-Ons</h4>
+                    <div class="fbc_row row group" id="showhide_addons1">
+
+                        <div class="">
+                            <div data-val="windows"
+                                 class="form_addons"
+                                 title="" id="icon-1">
+                                <img class="form_addons" src="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon13g.png"
+                                     data-src="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon13g.png"
+                                     data-altsrc="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon13w.png">
+                                <p class="form_addons">Interior<br>Windows</p>
+                                <span class="smallipop-hint">
+														Goodbye fingerprints and dust! Our streak free shine will
+                                    make it seem a bit brighter around the house! We'll even clean the rails between
+                                    the panes and the windowsills! The rate will include up to 8 windows in your
+                                    home *Inside windows only*</span>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div data-val="fridge"
+                                 class="form_addons"
+                                 title="" id="icon-2">
+                                <img class="form_addons" src="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon14g.png"
+                                     data-src="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon14g.png"
+                                     data-altsrc="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon14w.png">
+                                <p class="form_addons">Inside<br>Fridge</p>
+                                <span class="smallipop-hint">
+														Our team will thoroughly clean the inside walls, drawers,
+                                    shelves, and door of your refrigerator. We'll empty everything prior to cleaning
+                                    and place all items back once finished. *If you would like our teams to dispose
+                                    any perishables, please note this information in the instructions*</span>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div data-val="oven"
+                                 class="form_addons"
+                                 title="" id="icon-3">
+                                <img class="form_addons" src="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon15g.png"
+                                     data-src="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon15g.png"
+                                     data-altsrc="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon15w.png">
+                                <p class="form_addons">Inside<br>Oven</p>
+                                <span class="smallipop-hint">
+														We will clean the inside of your oven and oven door!</span>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div data-val="dishes"
+                                 class="form_addons"
+                                 title="" id="icon-4">
+                                <img class="form_addons" src="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon16g.png"
+                                     data-src="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon16g.png"
+                                     data-altsrc="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon16w.png">
+                                <p class="form_addons">Dishes<br>&nbsp;</p>
+                                <span class="smallipop-hint">
+														Gourmet adventures? No worries! We can help you with the
+                                    extra dishes! *Rate will depend on the volume of dishes left*</span>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div data-val="eco"
+                                 class="form_addons"
+                                 title="" id="icon-5">
+                                <img class="form_addons" src="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon17g.png"
+                                     data-src="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon17g.png"
+                                     data-altsrc="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon17w.png">
+                                <p class="form_addons">Eco Friendly<br>Supplies</p>
+                                <span class="smallipop-hint">
+														By selecting our Green Cleaning add-on service, you'll
+                                    ensure your home is being cleaned with the best products for your family
+                                    and the Earth!</span>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div data-val="basement"
+                                 class="form_addons"
+                                 title="" id="icon-7">
+                                <img class="form_addons" src="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon19g.png"
+                                     data-src="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon19g.png"
+                                     data-altsrc="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon19w.png">
+                                <p class="form_addons">Basement<br>&nbsp;</p>
+                                <span class="smallipop-hint">
+														Show your finished basement some TLC! Our team will
+                                    clean downstairs with the same care taken on your main floor. *Covers
+                                    the basement common area. Have extra rooms or bathrooms down there?
+                                    Please include this when you select the number of beds and baths the
+                                    property has*</span>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div data-val="laundry"
+                                 class="form_addons"
+                                 title="" id="icon-8">
+                                <img class="form_addons" src="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon20g.png"
+                                     data-src="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon20g.png"
+                                     data-altsrc="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon20w.png">
+                                <p class="form_addons">Laundry<br>&nbsp;</p>
+                                <span class="smallipop-hint">
+														We can do a load of linens and/or towels to help freshen
+                                    up your bed and bath! *Rate starts at $25 per load*</span>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div data-val="deep"
+                                 class="form_addons"
+                                 title="" id="icon-9">
+                                <img class="form_addons" src="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon21g.png"
+                                     data-src="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon21g.png"
+                                     data-altsrc="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon21w.png">
+                                <p class="form_addons">Deep<br>Cleaning</p>
+                                <span class="smallipop-hint">
+														Need something a bit more detailed? iQ has got you covered!
+                                    If you haven’t had a good cleaning in a while, our teams will do a thorough
+                                    cleaning to make your home feel fresh! Designed to get your home cleaned top
+                                    to bottom, anytime of the year!</span>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div data-val="movein"
+                                 class="form_addons"
+                                 title="" id="icon-10">
+                                <img class="form_addons" src="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon22g.png"
+                                     data-src="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon22g.png"
+                                     data-altsrc="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon22w.png">
+                                <p class="form_addons">Move Out/In<br>Cleaning</p>
+                                <span class="smallipop-hint">
+														Moving in and want the place fresh and new? Or moving out
+                                    and want your deposit back? Choose a move-in or move-out clean when you book.
+                                    Please make sure you've cleared the cabinets and moved out the furniture before
+                                    the cleaners arrive. Includes: Inside Fridge, Inside Oven, Inside Cabinets and
+                                    drawers, Wet wipe baseboards, and etc. *Please be sure home is vacant for a
+                                    thorough cleaning*</span>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div data-val="carpet"
+                                 class="form_addons"
+                                 title="" id="icon-11">
+                                <img class="form_addons" src="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon23g.png"
+                                     data-src="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon23g.png"
+                                     data-altsrc="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon23w.png">
+                                <p class="form_addons">Carpet<br>Cleaning</p>
+                                <span class="smallipop-hint">
+														Carpets can tend to feel less and less clean after some
+                                    time. iQ conveniently offers carpet cleaning services. Our teams will apply
+                                    the carpet shampoo to the areas, and run our steam powered machine to lift
+                                    any leftover dirt or debris. Rates begin at $100 *If you have more than one
+                                    carpeted area and or area rug, please contact us for an accurate estimate*</span>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div data-val="construction"
+                                 class="form_addons"
+                                 title="" id="icon-12">
+                                <img src="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon24g.png"
+                                     data-src="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon24g.png"
+                                     data-altsrc="https://www.iqcleaning.us/wp-content/themes/iqc/images/addon24w.png">
+                                <p>Post<br>Construction</p>
+                                <span class="smallipop-hint">
+														Achoo! Look at all that dust! Our teams are professionally
+                                    trained to handle all types of cleanings! This add on is perfect for homes
+                                    that have went through recent construction or renovations!</span>
+                            </div>
+                        </div>
+                        <input type="hidden" id="form_input_addons" name="form_input_addons">
+                    </div>
+
+                    <div class="separa"></div>
+
+                    <h4 class="frm-h4">When would you like us to come?</h4>
+                    <div class="">
+                        <div class="">
+                            <input id="form_date" readonly="readonly" name="form_date" placeholder="mm - dd - yyyy"
+                                   class="" type="text" autocomplete="off" value="08252017" >
+                        </div>
+
+                        <div class="">
+                            <div id="form_hour" class="wrapper-dropdown-3" tabindex="1">
+                                <span id="form_input_hour" class="wrapper-result">-- : --</span>
+                                <input id="form_input_hour_h" name="form_input_hour_h" type="hidden">
+                                <ul class="dropdown" id="iqv_time">
+                                    <li id="8-30"><a href="#">08:30 AM - 10:30 AM</a></li>
+                                    <li id="10-30"><a href="#">10:30 AM - 12:30 PM</a></li>
+                                    <li id="12-30"><a href="#">12:30 PM - 02:30 PM</a></li>
+                                    <li id="14-30"><a href="#">02:30 PM - 04:30 PM</a></li>
+                                    <li id="16:30"><a href="#">04:30 PM - 06:30 PM</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="frm-box">
+        <div class="frm-header">
+            <h3 class="hdr-h3" style="display:inline-block;">Payment Details</h3>
+            <div class="hdr-icon" style="display:inline-block;" title="">
+                <img src="https://www.iqcleaning.us/wp-content/themes/iqc/images/info.png"
+                     alt="Information hover icon. Hover text is as follows: This is simply
+                     to ensure that the service you're requesting can be fulfilled at
+                     the time you've requested and also that you are committed to the
+                     service. We strive to provide our customers with the best experience
+                     and we're able to do that by having accurate openings and timely service.">
+                <!--<span class="smallipop-hint">-->
+                <!--This is simply to ensure that the service you're requesting can be fulfilled
+                at the time you've requested and also that you are committed to the service.
+                We strive to provide our customers with the best experience and we're able to
+                do that by having accurate openings and timely service.-->
+                <!--</span>-->
+            </div>
+            <p class="hdr-p">Enter your card information below. You will be charged after service has been
+                rendered.</p>
+        </div>
+        <div class="content">
+            <div class="fb_section">
+
+                <div class="">
+                    <div class="">
+                        <input id="form_card_number" name="form_card_number" placeholder="Card number"
+                               class="ipt" type="text" autocomplete="off">
+                    </div>
+                    <div class="" style="padding-top:11px;">
+                        <img src="https://www.iqcleaning.us/wp-content/themes/iqc/images/cards.png"
+                             alt="Credit cards we accept: MasterCard, VISA, Discover, American Express. SSL encrypted payment powered by Stripe."
+                             style="width:100%;height:auto;">
+                    </div>
+                </div>
+
+                <div class="">
+                    <div class="">
+
+                        <div id="month-year">
+                            <div class="month-drop">
+                                <div id="form_card_month" class="wrapper-dropdown-3" tabindex="1">
+                                    <span id="form_input_card_month" class="wrapper-result">Month</span>
+                                    <input type="hidden" id="form_card_month_h" name="form_card_month_h">
+                                    <ul class="dropdown" id="iqv_cardmonth">
+                                        <li id="c-1"><a href="#">01</a></li>
+                                        <li id="c-2"><a href="#">02</a></li>
+                                        <li id="c-3"><a href="#">03</a></li>
+                                        <li id="c-4"><a href="#">04</a></li>
+                                        <li id="c-5"><a href="#">05</a></li>
+                                        <li id="c-6"><a href="#">06</a></li>
+                                        <li id="c-7"><a href="#">07</a></li>
+                                        <li id="c-8"><a href="#">08</a></li>
+                                        <li id="c-9"><a href="#">09</a></li>
+                                        <li id="c-10"><a href="#">10</a></li>
+                                        <li id="c-11"><a href="#">11</a></li>
+                                        <li id="c-12"><a href="#">12</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="">
+                                <div id="form_card_year" class="wrapper-dropdown-3" tabindex="1">
+                                    <span id="form_input_card_year" class="wrapper-result">Year</span>
+                                    <input type="hidden" id="form_card_year_h" name="form_card_year_h">
+                                    <ul class="dropdown" id="iqv_cardyear">
+                                        <li id="y-17"><a href="#">2017</a></li>
+                                        <li id="y-18"><a href="#">2018</a></li>
+                                        <li id="y-19"><a href="#">2019</a></li>
+                                        <li id="y-20"><a href="#">2020</a></li>
+                                        <li id="y-21"><a href="#">2021</a></li>
+                                        <li id="y-22"><a href="#">2022</a></li>
+                                        <li id="y-23"><a href="#">2023</a></li>
+                                        <li id="y-24"><a href="#">2024</a></li>
+                                        <li id="y-25"><a href="#">2025</a></li>
+                                        <li id="y-26"><a href="#">2026</a></li>
+                                        <li id="y-27"><a href="#">2027</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="">
+                                <input id="form_card_cvc" name="form_card_cvc" placeholder="CVC" class="ipt" type="text"
+                                       autocomplete="off">
+                            </div>
+
+
+                            <div class="form-row">
+                                <label for="card-element">
+                                    Credit or debit card
+                                </label>
+                                <div id="card-element">
+                                    <!-- a Stripe Element will be inserted here. -->
+                                </div>
+
+                                <!-- Used to display form errors -->
+                                <div id="card-errors" role="alert"></div>
+                            </div>
+
+
+                            <div class="fbc_quart col-12 col-md-3 mb-3">
+                                <div class="" style="display:inline-block;"
+                                     title="">
+                                    <img class="img-fluid"
+                                         src="https://www.iqcleaning.us/wp-content/themes/iqc/images/info.png"
+                                         alt="Information hover icon. Hover text is as follows:
+                                         This is the final three (sometimes four) digits of the number printed on
+                                         the signature strip on the back of your card.">
+                                    <span class="smallipop-hint">
+												This is the final three (sometimes four) digits of the number printed
+                                        on the signature strip on the back of your card.
+											</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="separa"></div>
+
+                        <div class="">
+                            <div class="">
+                                <input id="form_discountcode" name="form_discountcode"
+                                       placeholder="Discount Code (Optional)"
+                                       class="form-control input-md" type="text" autocomplete="off">
+                            </div>
+                            <div class="">
+                                <button id="apply_code" class="apply_code">Apply Code</button>
+                            </div>
+                            <div class="">
+                                <p id="discresult"></p>
+                            </div>
+                        </div>
+
+                        <div class="separa"></div>
+
+                        <div class="fbc_row row group">
+                            <div class="col-12">
+                                <p class="descrip" style="font-weight: bold;">• A confirmation email will be sent upon
+                                    booking.</p>
+                                <p class="descrip" style="font-weight: bold;">• You will not be charged until your
+                                    appointment
+                                    has been completed and we've followed up to make sure you're satisfied.</p>
+                            </div>
+                        </div>
+
+                        <div class="">
+                            <div class="col-12">
+                                <button id="submit_form" class="submit_form">Book My Cleaning Now!</button>
+                            </div>
+                        </div>
+
+                        <div class="fbc_row row group">
+                            <div class="col-12">
+                                <label for="form_checkbox" class="form_checkbox">
+                                    <input name="form_checkbox" id="form_checkbox" value="1" type="checkbox" autocomplete="off">
+                                    By clicking the button, I acknowledge that I understand and agree with iQ Cleaning's
+                                    <a href="/terms-conditions/" target="_blank"
+                                       title="Read our terms &amp; conditions here.">Terms &amp; Conditions</a>.
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/jquery.creditCardValidator.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvm3k38jtqQTFlHxM1Cco1sf9vAtwvdTk&libraries=places"></script>
+<script src="https://js.stripe.com/v3/"></script>
+<script src="/js/checkOut.js"></script>
+<script src="/js/formValidations.js"></script>
+
+</body>
+</html>
