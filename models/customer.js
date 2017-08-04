@@ -10,9 +10,8 @@ const CustomerSchema = new mongoose.Schema({
     password: {type: String},
     name: {type: String, required: true, minlength: 1},
     phone: {type: String, required: true, minlength: 10},
-    credit_card: {type: String, required: true, minlength: 1},
-    expiration: {type: String, required: true, minlength: 6},
-    cvc: {type: String, required: true, minlength: 3},
+    stripeID: {type: String, minlength: 1},
+    card: {type: String, minlength: 1},
     address: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'House'

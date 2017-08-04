@@ -12,11 +12,16 @@ const express        = require("express"),
       // LocalStrategy  = require('passport-local').Strategy,
       methodOverride = require('method-override'),
       customer       = require('./models/customer'),
+      http           = require('http'),
+      socketIO       = require('socket.io'),
       fs             = require('fs'),
+      path           = require('path'),
+      moment         = require('moment'),
       seedDB         = require('./seeds');
 
-const indexRoutes    = require('./routes/index'),
-      ajaxRoutes     = require('./routes/ajax');
+const mainRoutes    = require('./routes/main'),
+      formRoutes   = require('./routes/form'),
+      ajaxRoutes    = require('./routes/ajax');
 
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost/cleaning_test", {useMongoClient: true});
@@ -26,6 +31,7 @@ mongoose.connect("mongodb://localhost/cleaning_test", {useMongoClient: true});
 mongoose.connection.once('open', () => console.log('Mongo connection successful.'))
     .on('error', (error) => console.log('Mongo connection error:', error));
 
+const date = moment();
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
@@ -63,12 +69,37 @@ app.use((req, res, next) => {
 // app.use((req, res, next) => {
 //   res.render('maintenance.hbs');
 // });
+const publicPath = path.join(__dirname + "/public");
 
-app.use(express.static(__dirname + "/public"));
-app.use(indexRoutes);
+app.use(express.static(publicPath));
+app.use(mainRoutes);
 app.use(ajaxRoutes);
+app.use(formRoutes);
 
 seedDB();
 
-app.listen(process.env.PORT || 3000, process.env.IP, () =>
+const          server = http.createServer(app),
+               io     = socketIO(server),
+    {generateMessage} = require('./utils/chat');
+
+io.on('connection', (socket) => {
+    console.log('New user connected');
+    console.log(socket.id);
+
+    socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chat app'));
+
+    socket.broadcast.emit('newMessage', generateMessage('Admin', 'New user joined'));
+
+    socket.on('createMessage', (message, callback) => {
+        console.log('createMessage', message);
+        socket.broadcast.emit('newMessage', generateMessage(message.from, message.text));
+        callback();
+    });
+
+    socket.on('disconnect', () => {
+        console.log('User was disconnected');
+    });
+});
+
+server.listen(process.env.PORT || 3000, process.env.IP, () =>
     console.log("Server listening..."));

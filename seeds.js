@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-Customer = require('./models/customer'),
+    Customer = require('./models/customer'),
     House = require('./models/house'),
     Service = require('./models/service'),
     Employee = require('./models/employee'),
@@ -71,19 +71,13 @@ const data_customer = [
         email: "winterchagas@gmail.com",
         password: '123',
         name: 'Leonardo Winter',
-        phone: '8582847103',
-        credit_card: '44444444444444444',
-        expiration: '062020',
-        cvc: '650'
+        phone: '8582847103'
     },
     {
         email: "ma.puyol@hotmail.com",
         password: '123',
         name: 'Maria Puyol',
-        phone: '619',
-        credit_card: '4111111111111111',
-        expiration: '122019',
-        cvc: '941'
+        phone: '6191231232'
     }
 ];
 

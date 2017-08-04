@@ -23,7 +23,6 @@ router.post("/check_email", function (req, res) {
         })
 });
 
-
 router.post("/check_phone", (req, res) => {
     Customer.findOne({phone: req.body.phone}).exec()
         .then((foundPhone) => {
