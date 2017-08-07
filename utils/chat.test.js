@@ -1,6 +1,6 @@
 const expect = require('expect');
 
-const {generateMessage} = require('./chat');
+const {generateMessage} = require('./chatHelper');
 
 describe('generateMessage', () => {
   it('should generate correct message object', () => {

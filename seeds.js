@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
     Service = require('./models/service'),
     Employee = require('./models/employee'),
     Price = require('./models/price'),
+    Admin = require('./models/user_admin'),
     Contract = require('./models/contract');
 
 
@@ -81,6 +82,14 @@ const data_customer = [
     }
 ];
 
+const data_admin = [
+    {
+        email: "winterchagas2@gmail.com",
+        password: '123',
+        name: 'Leonardo Winter',
+    }
+];
+
 function seedDB() {
     House.remove({}, function (err) {
         if (err) {
@@ -148,6 +157,21 @@ function seedDB() {
                                                                                                 } else {
                                                                                                     console.log('PRICE CREATED');
                                                                                                     console.log(createdPrice);
+
+                                                                                                    Admin.remove({}, function (err) {
+                                                                                                        if (err) {
+                                                                                                            console.log('ADMINS NOT REMOVED');
+                                                                                                        } else {
+                                                                                                            console.log('ALL ADMINS REMOVED');
+                                                                                                            Admin.create(data_admin[0], (err, createdAdmin) => {
+                                                                                                                if (err) {
+                                                                                                                    console.log(err);
+                                                                                                                } else {
+                                                                                                                    console.log('ADMIN CREATED');
+                                                                                                                    console.log(createdAdmin);
+                                                                                                                }
+                                                                                                            });
+                                                                                                        }});
                                                                                                 }
                                                                                             });
                                                                                         }});
@@ -174,3 +198,5 @@ function seedDB() {
 }
 
 module.exports = seedDB;
+
+

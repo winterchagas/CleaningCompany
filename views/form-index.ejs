@@ -5,6 +5,7 @@
     <title>Form-index</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/service_new.css">
+    <link rel="stylesheet" href="/css/chat.css">
     <script type="text/javascript" src="/js/modernizr.custom.79639.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Pathway+Gothic+One|Peddana|Special+Elite"
           rel="stylesheet">
@@ -514,10 +515,24 @@
         </div>
     </div>
 
-
-    <iframe src="chat_page.html" name="myIframe" width="600" height="600"> </iframe>
-
-    <button id="test-btn" class="test-btn">GO</button>
+    <div style="height: 500px; width: 400px;">
+   <div class="chat" >
+       <div class="chat__sidebar">
+           <h3>People</h3>
+           <div id="users"></div>
+       </div>
+       <div class="chat__main">
+           <ol id="messages" class="chat__messages"></ol>
+           <div class="chat__footer">
+               <form id="message-form">
+                   <input name="message" type="text" placeholder="Message" autofocus autocomplete="off"/>
+                   <button>Send</button>
+               </form>
+               <button id="send-location">Send location</button>
+           </div>
+       </div>
+   </div>
+    </div>
 
 
 </section>
@@ -527,6 +542,8 @@
 <script src="https://js.stripe.com/v3/"></script>
 <script src="/js/checkOut.js"></script>
 <script src="/js/formValidations.js"></script>
-
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/moment.js"></script>
+<script src="/js/chat.js"></script>
 </body>
 </html>

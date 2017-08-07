@@ -20,7 +20,7 @@ const express        = require("express"),
       seedDB         = require('./seeds');
 
 const mainRoutes    = require('./routes/main'),
-      formRoutes   = require('./routes/form'),
+      formRoutes    = require('./routes/form'),
       ajaxRoutes    = require('./routes/ajax');
 
 mongoose.Promise = global.Promise;
@@ -80,24 +80,62 @@ seedDB();
 
 const          server = http.createServer(app),
                io     = socketIO(server),
-    {generateMessage} = require('./utils/chat');
+           chatHelper = require('./utils/chatHelper'),
+              {Users} = require('./utils/users');
+
+const users = new Users();
 
 io.on('connection', (socket) => {
     console.log('New user connected');
-    console.log(socket.id);
+    // console.log(socket);
 
-    socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chat app'));
+    socket.on('join', (params, callback) => {
+        if (!chatHelper.isRealString(params.name) || !chatHelper.isRealString(params.email_room)) {
+            return callback('Name and email are required.');
+        }
+        socket.join(params.email_room);
+        users.removeUser(socket.id);
+        users.addUser(socket.id, params.name, params.email_room, false);
+        io.emit('request', params.email_room);
+        callback();
+    });
 
-    socket.broadcast.emit('newMessage', generateMessage('Admin', 'New user joined'));
+    socket.on('joinAdmin', (params, callback) => {
+        if (!chatHelper.isRealString(params.name || !chatHelper.isRealString(params.room))) {
+            return callback('Email are required.');
+        }
+        socket.join(params.room);
+        users.addUser(socket.id, params.name, params.room, true);
+        socket.broadcast.to(params.room).emit('newMessage', chatHelper.generateMessage(params.name, params.room, 'Hi, how may I help you today?'));
+        callback();
+    });
+
+    socket.on('leaveAdmin', (room, callback) => {
+        if (!chatHelper.isRealString(room)) {
+            return callback('Room required.');
+        }
+        socket.leave(room);
+        console.log('DISCONNECTION: ', socket.id, room);
+        callback();
+    });
 
     socket.on('createMessage', (message, callback) => {
-        console.log('createMessage', message);
-        socket.broadcast.emit('newMessage', generateMessage(message.from, message.text));
+        const user = users.getUser(socket.id);
+        if (user && chatHelper.isRealString(message.text)) {
+        socket.broadcast.to(message.fromRoom).emit('newMessage', chatHelper.generateMessage(user.name, message.fromRoom, message.text));
+        }
         callback();
     });
 
     socket.on('disconnect', () => {
-        console.log('User was disconnected');
+        const user = users.getUser(socket.id);
+        if (user) {
+            if (!user.isAdmin) {
+                users.removeUser(socket.id);
+                console.log(socket.id ,user.room,' was disconnected');
+                io.to(user.room).emit('disconnection', user.room);
+            }
+        }
     });
 });
 

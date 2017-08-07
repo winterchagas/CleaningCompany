@@ -12,9 +12,7 @@ const EmployeeSchema = new mongoose.Schema({
     password: {type: String, required: true, minlength: 1},
     image: String,
     rating: String,
-    cleanings: {type: String, required: true, minlength: 1, default: '0'},
-    isAdmin: {type: Boolean, default: false}
+    cleanings: {type: String, required: true, minlength: 1, default: '0'}
 });
 
-EmployeeSchema.plugin(passportLocalMongoose);
 module.exports = mongoose.model("Employee", EmployeeSchema);

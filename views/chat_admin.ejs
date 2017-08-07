@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/chat.css">
+</head>
+<!--<body id="body" class="chat">-->
+<body id="body">
+<input id="admin_email" value="<%= email %>">
+<input id="admin_name" value="<%= name %>">
+<div id="main_div" class="chat__main" style="width: 500px; height: 150px;">
+    <ol id="messages1" class="chat__messages"></ol>
+    <div class="chat__footer">
+        <form id="message-form">
+            <input name="message" type="text" placeholder="Message" autofocus autocomplete="off"/>
+            <button>Send</button>
+        </form>
+    </div>
+    <span id="join1"></span>
+</div>
+<div id="main_div2" class="chat__main" style="width: 500px; height: 150px;">
+    <ol id="messages2" class="chat__messages"></ol>
+    <div class="chat__footer">
+        <form id="message-form2">
+            <input name="message2" type="text" placeholder="Message" autofocus autocomplete="off"/>
+            <button>Send</button>
+        </form>
+    </div>
+    <span id="join2"></span>
+</div>
+<div id="main_div3" class="chat__main" style="width: 500px; height: 150px;">
+    <ol id="messages3" class="chat__messages"></ol>
+    <div class="chat__footer">
+        <form id="message-form3">
+            <input name="message3" type="text" placeholder="Message" autofocus autocomplete="off"/>
+            <button>Send</button>
+        </form>
+    </div>
+    <span id="join3"></span>
+</div>
+<div id="main_div4" class="chat__main" style="width: 500px; height: 150px;">
+    <ol id="messages4" class="chat__messages"></ol>
+    <div class="chat__footer">
+        <form id="message-form4">
+            <input name="message4" type="text" placeholder="Message" autofocus autocomplete="off"/>
+            <button>Send</button>
+        </form>
+    </div>
+    <span id="join4"></span>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/jquery-3.2.1.slim.min.js"></script>
+<script src="/js/moment.js"></script>
+<script src="/js/chat_admin.js"></script>
+</body>
+</html>

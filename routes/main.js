@@ -27,5 +27,8 @@ router.post("/login", passport.authenticate('local',
     }), function (req, res) {
 });
 
+router.post("/chatlogin", function (req, res) {
+    res.render('chat_admin', {email: req.body.email, name: req.body.password});
+});
 
 module.exports = router;

@@ -4,19 +4,20 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/chat.css">
 </head>
-<body class="chat">
-<div class="chat__sidebar">
-    <h3>People</h3>
-    <div id="users"></div>
+<body id="body" class="chat">
+<div id="div_login" style="margin: 40VH auto; border: 1px solid black" >
+    <button id="join">Join Chat</button>
+    <input id="name" type="text" placeholder="Name" autofocus/>
+    <input id="email" type="text" placeholder="Email"/>
+    <input id="recipient" value="">
 </div>
-<div class="chat__main">
+<div id="main_div" class="chat__main" >
     <ol id="messages" class="chat__messages"></ol>
     <div class="chat__footer">
         <form id="message-form">
             <input name="message" type="text" placeholder="Message" autofocus autocomplete="off"/>
             <button>Send</button>
         </form>
-        <button id="send-location">Send location</button>
     </div>
 </div>
 <script src="/socket.io/socket.io.js"></script>

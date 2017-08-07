@@ -185,6 +185,10 @@ router.get("/chat", function (req, res) {
     res.render('chat_page');
 });
 
+router.get("/chat_admin", function (req, res) {
+    res.render('chat_admin');
+});
+
 router.get("/email", function (req, res) {
     res.render('email_page');
 });
