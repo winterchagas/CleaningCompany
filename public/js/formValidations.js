@@ -292,6 +292,7 @@ $(document).ready(() => {
                     }
                     break;
                 case 'btn_ser':
+                    // e.preventDefault();
                     let pass1 = true;
                     for (let field in serviceFields) {
                         if (!serviceFields[field]) {
@@ -309,29 +310,6 @@ $(document).ready(() => {
                         e.preventDefault();
                     }
                     break;
-//                 case 'test-btn':
-//                     // Create a new blank iframe
-//                     var newIframe = document.createElement('iframe');
-// // Set attributes for iFrame (do whatever suits)
-//                     newIframe.width = '100%'; newIframe.height = '100%';
-// // This for the src makes it 'friendly'
-//                     newIframe.src = 'about:blank';
-// // Use whatever method is needed to insert the iframe where you want it
-//                     document.body.appendChild(newIframe);
-// // Make this reference your hidden div containing the markup you want to insert
-//                     var getHTML = $('#HTMLblock').html();
-// // List any CSS you want to reference within the iframe
-//                     var CSS = '<link rel="stylesheet" href="https://external.com/css/styles.css">';
-// // List any JS you want to reference within the iframe
-//                     var JS = '<script src="http://external.com/js/plugins.js"></script>';
-// // Now sticch it all together into one thing to insert into the iframe
-//                     var myContent = '<!DOCTYPE html>' + '<html><head><title>Rendered HTML from Pattern</title>' + CSS + '</head><body>' + getHTML + JS + '</body></html>';
-//
-// // Use the JavaScript methods to write to the iFrame, then close it
-//                     newIframe.contentWindow.document.open('text/html', 'replace');
-//                     newIframe.contentWindow.document.write(myContent);
-//                     newIframe.contentWindow.document.close();
-//                     break;
             }
         };
 
@@ -477,16 +455,10 @@ $(document).ready(() => {
             .done(data => {
                 if (data.response === 'found') {
                     console.log('address already exists.');
-                    personalFields.form_address = false;
-                    personalFields.form_city = false;
-                    personalFields.form_input_state = false;
-                    personalFields.form_zipcode = false;
+                    setPersonalFields(false);
                 } else if (data.response === 'not_found') {
                     console.log('valid address');
-                    personalFields.form_address = true;
-                    personalFields.form_city = true;
-                    personalFields.form_input_state = true;
-                    personalFields.form_zipcode = true;
+                    setPersonalFields(true);
                     $address.css("pointer-events", "none");
                     $city.css("pointer-events", "none");
                     $stateDiv.css("pointer-events", "none");
@@ -494,19 +466,20 @@ $(document).ready(() => {
 
                 } else {
                     console.log('Unable to search database.');
-                    personalFields.form_address = false;
-                    personalFields.form_city = false;
-                    personalFields.form_input_state = false;
-                    personalFields.form_zipcode = false;
+                    setPersonalFields(false);
                 }
             })
             .fail(data => {
                 console.log('Unable to perform request, please check internet connection.');
-                personalFields.form_address = false;
-                personalFields.form_city = false;
-                personalFields.form_input_state = false;
-                personalFields.form_zipcode = false;
+                setPersonalFields(false);
             })
+    };
+
+    const setPersonalFields = (bool) => {
+        personalFields.form_address = bool;
+        personalFields.form_city = bool;
+        personalFields.form_input_state = bool;
+        personalFields.form_zipcode = bool;
     };
 
 

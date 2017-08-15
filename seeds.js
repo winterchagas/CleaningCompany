@@ -50,20 +50,20 @@ const data_contract = [{
 
 const data_price = [{
     region: 'San Jose',
-    base_price: 50,
-    per_bedroom: 10,
-    per_bathroom: 10,
-    per_frequency: 5,
+    base_price: 5000,
+    per_bedroom: 1000,
+    per_bathroom: 1000,
+    per_frequency: 500,
     discount: 0,
-    windows: 10,
-    fridge: 10,
-    oven: 10,
-    dishes: 10,
-    eco: 5,
-    carpet: 10,
-    laundry: 10,
-    deep: 30,
-    move_out: 50
+    windows: 1000,
+    fridge: 1000,
+    oven: 1000,
+    dishes: 1000,
+    eco: 500,
+    carpet: 1000,
+    laundry: 1000,
+    deep: 3000,
+    move_out: 5000
 }];
 
 

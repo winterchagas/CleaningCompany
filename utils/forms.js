@@ -20,7 +20,7 @@ formHelper.calcPrice = async (service, freq, city, bath, bed) => {
         .then((foundPrice) => {
             total = foundPrice.base_price + (bath * foundPrice.per_bathroom) +
                 (bed * foundPrice.per_bedroom);
-            total = total - (total * (freqVal * (foundPrice.per_frequency / 100)));
+            total = total - (total * (freqVal * (foundPrice.per_frequency)));
             console.log(service.addons.length);
             if (service.addons.length > 0) {
                 service.addons.forEach((addon) => {

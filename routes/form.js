@@ -27,10 +27,27 @@ router.post("/personal", function (req, res) {
                 if (err) {
                     reject('FAILED TO CREATE CUSTOMER', err);
                 } else {
-                    passport.authenticate("local")(req, res, () => {
-                        // req.flash('success', 'Welcome to YelpCamp'+ user.username +'.');
+
+                    passport.authenticate("local")(req, res, function() {
                         console.log('CUSTOMER LOGGED IN', newDbCustomer.name);
                     });
+
+                    // passport.authenticate('local', function(err, user, info) {
+                    //     if (err) { console.log('ERROR AUTHENTICATING  ',  err) }
+                    //     if (!user) { console.log('NO USER') }
+                    //     req.logIn(user, function(err) {
+                    //         if (err) { console.log('NOT ABLE TO LOGIN') }
+                    //     });
+                    // })(req, res);
+                    //
+                    // passport.authenticate('local', { successRedirect: '/app',
+                    //     failureRedirect: '/login' });
+
+                    if(req.isAuthenticated()) {
+                        console.log('AUTHENTICATED')
+                    }
+
+
                     // console.log(newDbCustomer);
                     currCust = newDbCustomer;
                     resolve(newDbCustomer);

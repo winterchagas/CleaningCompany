@@ -32,6 +32,7 @@ mongoose.connection.once('open', () => console.log('Mongo connection successful.
     .on('error', (error) => console.log('Mongo connection error:', error));
 
 const date = moment();
+
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
@@ -39,8 +40,11 @@ app.use(flash());
 
 app.use(require('express-session')({
     secret: 'winterSecret',
-    resave: false,
-    saveUninitialized: false
+    resave: true,
+    saveUninitialized: true,
+    cookie:{
+        maxAge : 360000 // one hour in millis
+    }
 }));
 
 app.use(passport.initialize());
@@ -60,7 +64,7 @@ app.use((req, res, next) => {
     });
     //res.locals is what all the templates can access
     //req.user is user information that comes from passport
-    // res.locals.currentUser = req.user;
+    res.locals.currentUser = req.user;
     // res.locals.error = req.flash('error');
     // res.locals.success = req.flash('success');
     next();

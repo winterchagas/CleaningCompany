@@ -117,7 +117,7 @@ $('#message-form2').on('submit', function (e) {
             text: $textBox.val(),
             fromRoom: $('#join2').text()
         }, function () {
-            console.log('ENVIADA')
+            console.log('ENVIADA');
             $textBox.val('')
         });
         let li = $('<li></li>');
