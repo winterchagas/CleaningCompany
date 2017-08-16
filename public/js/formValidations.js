@@ -4,7 +4,7 @@
 
 $(document).ready(() => {
 
-    const API_KEY = '&key=AIzaSyAF_M-MptXdA-BGo-erQ-bYd40L8Zfj8v4'; //TODO CHANGE TO ENV VARIABLE
+    const API_KEY = '&key=AIzaSyCyScV611ta41fOVnHtdYCIYr4hLeSp82I'; //TODO CHANGE TO ENV VARIABLE
 
     const $first_name = $('#form_first_name'),
         $last_name = $('#form_last_name'),

@@ -36,13 +36,50 @@ formHelper.calcPrice = async (service, freq, city, bath, bed) => {
         });
 };
 
-formHelper.updateCustomer = async (id, value) => {
-    Customer.findByIdAndUpdate(id, value)
-        .then((upCust) => {
-            return upCust;
-        }).catch((err) => {
-        throw new Error('FAILED TO UPDATE CUSTOMER', err);
+// formHelper.updateCustomer = async (id, value) => {
+//     console.log('INSIDE UPDATE CUSTOMER')
+//     Customer.findByIdAndUpdate(id, value).exec()
+//         .then((upCust) => {
+//             console.log('CUSTOMER UPDATED',  upCust)
+//             return upCust;
+//         }).catch((err) => {
+//         console.log('CUSTOMER FAILED TO UPDATE',  err)
+//         throw new Error('FAILED TO UPDATE CUSTOMER', err);
+//     });
+// };
+
+formHelper.updateCustomer = (id, ...values) => {
+    return new Promise((resolve, reject) => {
+        Customer.findById(id, function (err, foundCust) {
+            if (err) {
+                console.log('CUSTOMER not UPDATED',  err)
+                reject('FAILED TO UPDATE CUSTOMER', err);
+            }
+            for (const value of values) {
+                foundCust[Object.keys(value)[0]] = value[Object.keys(value)[0]];
+            }
+
+            foundCust.save(function (err, upCust) {
+                if (err) {
+                    console.log('FAILED TO SAVE CUSTOMER IN DB', err);
+                    reject('FAILED TO SAVE CUSTOMER IN DB', err);
+                }
+                console.log('CUSTOMER UPDATED',  upCust)
+                resolve(upCust);
+            });
+        });
     });
+
+
+    // return Customer.findByIdAndUpdate(id, value, function (err, upCust) {
+    //     if (err) {
+    //         console.log('CUSTOMER not UPDATED',  err)
+    //         throw new Error('FAILED TO UPDATE CUSTOMER', err);
+    //     } else {
+    //         console.log('CUSTOMER UPDATED',  upCust)
+    //         return upCust;
+    //     }
+    // })
 };
 
 module.exports = {formHelper};

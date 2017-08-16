@@ -17,6 +17,7 @@ const express        = require("express"),
       fs             = require('fs'),
       path           = require('path'),
       moment         = require('moment'),
+      cookieParser   = require('cookie-parser'),
       seedDB         = require('./seeds');
 
 const mainRoutes    = require('./routes/main'),
@@ -37,6 +38,8 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 app.use(flash());
+
+app.use(cookieParser());
 
 app.use(require('express-session')({
     secret: 'winterSecret',
@@ -64,7 +67,7 @@ app.use((req, res, next) => {
     });
     //res.locals is what all the templates can access
     //req.user is user information that comes from passport
-    res.locals.currentUser = req.user;
+    // res.locals.currentUser = req.user;
     // res.locals.error = req.flash('error');
     // res.locals.success = req.flash('success');
     next();

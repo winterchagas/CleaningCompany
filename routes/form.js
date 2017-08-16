@@ -11,11 +11,12 @@ const express = require("express"),
     House = require('../models/house'),
     {formHelper} = require('../utils/forms'),
     middleware = require('../middleware'),
-    stripe = require("stripe")("sk_test_eQD9xzN3ZSpPLAJyOxc70kxn");
+    stripe = require("stripe")("sk_test_ayHoWT14idAVgdpSdaA4c9YA");
 
 let currCust, currHouse, currCont, currServ, token;
 
 router.post("/personal", function (req, res) {
+    // console.log('REQUEST BODY ', req.body);
     const regCustomer = () => {
         return new Promise((resolve, reject) => {
             const newCustomer = {
@@ -27,29 +28,19 @@ router.post("/personal", function (req, res) {
                 if (err) {
                     reject('FAILED TO CREATE CUSTOMER', err);
                 } else {
-
                     passport.authenticate("local")(req, res, function() {
-                        console.log('CUSTOMER LOGGED IN', newDbCustomer.name);
+                        req.session.save(function (err) {
+                            if (err) {
+                                console.log('ERROR INSIDE SESSION');
+                            }
+                            console.log('SESSION SAVED');
+                        });
+                        if(req.isAuthenticated()) {
+                            console.log('SESSION  ', req.session)
+                        }
                     });
-
-                    // passport.authenticate('local', function(err, user, info) {
-                    //     if (err) { console.log('ERROR AUTHENTICATING  ',  err) }
-                    //     if (!user) { console.log('NO USER') }
-                    //     req.logIn(user, function(err) {
-                    //         if (err) { console.log('NOT ABLE TO LOGIN') }
-                    //     });
-                    // })(req, res);
-                    //
-                    // passport.authenticate('local', { successRedirect: '/app',
-                    //     failureRedirect: '/login' });
-
-                    if(req.isAuthenticated()) {
-                        console.log('AUTHENTICATED')
-                    }
-
-
-                    // console.log(newDbCustomer);
                     currCust = newDbCustomer;
+                    console.log('CURRCUST 1 ' , currCust)
                     resolve(newDbCustomer);
                 }
             })
@@ -86,8 +77,6 @@ router.post("/personal", function (req, res) {
 
     callDB().then((status) => {
         console.log(status);
-        console.log('CUSTOMER:  ', currCust);
-        console.log('HOUSE:  ', currHouse);
     }).catch((e) => {
         console.log(e.message);
     });
@@ -95,11 +84,11 @@ router.post("/personal", function (req, res) {
 });
 
 router.post("/service", function (req, res) {
-    console.log('REQUEST: ', req.body);
+    // console.log('REQUEST: ', req.body);
     const regContract = async () => {
         return Contract.create({frequency: req.body.form_frequency})
             .then((newDbContract) => {
-                console.log('CONTRACT CREATED: ', newDbContract);
+                // console.log('CONTRACT CREATED: ', newDbContract);
                 return newDbContract;
             })
             .catch((err) => {
@@ -124,7 +113,7 @@ router.post("/service", function (req, res) {
         };
         return Service.create(newService)
             .then((newDbService) => {
-                console.log('SERVICE CREATED: ', newDbService)
+                // console.log('SERVICE CREATED: ', newDbService)
                 return newDbService;
             })
             .catch((err) => {
@@ -142,13 +131,14 @@ router.post("/service", function (req, res) {
         currCont = contractReg;
         currServ = servFinish;
         currCust = await formHelper.updateCustomer(currCust._id, {contract: contractReg._id});
-        return 'OK';
+        return currCust;
     };
 
     callDB().then((status) => {
-        console.log(status);
-        console.log('CONTRACT:  ', currCont);
-        console.log('SERVICE:  ', currServ);
+        console.log('CALLDB STATUS CURRCUST  ', status);
+        // console.log('CURRCUST 2',  currCust)
+        // console.log('CONTRACT:  ', currCont);
+        // console.log('SERVICE:  ', currServ);
     }).catch((e) => {
         console.log(e.message);
     });
@@ -169,11 +159,12 @@ router.post("/pay", function (req, res) {
             currency: "usd",
             customer: customer.id,
         });
-    }).then(function (charge) {
+    }).then(async function (charge) {
         console.log('STRIPE CHARGE: ');
         console.log(charge);
         //todo log the charge
-        currCust = formHelper.updateCustomer(currCust._id, {stripeID: charge.source.customer, card: charge.source.id});
+        currCust = await formHelper.updateCustomer(currCust._id, {stripeID: charge.source.customer}, {card: charge.source.id});
+        console.log('CURRCUST 3',  currCust)
         res.redirect('/book');
     }).catch(function (err) {
         console.log('STRIPE CHARGE ERROR: ');
@@ -183,10 +174,12 @@ router.post("/pay", function (req, res) {
     });
 });
 
-router.post("/book", function (req, res) {
-    res.redirect('/book');
-});
 router.get('/book', middleware.isLoggedIn, function (req, res) {
+    console.log('BEFORE DASHBOARD ')
+    console.log('CUSTOMER ',currCust)
+    console.log('HOUSE ',currHouse)
+    console.log('CONTRACT ',currCont)
+    console.log('SERVICE ',currServ)
     res.render("index", {cust: currCust, house: currHouse, contract: currCont, service: currServ});
 });
 

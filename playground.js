@@ -46,9 +46,20 @@
 // console.log(capitalize('A jONES THE TO AT'));
 
 
-const fruits = ["apples", "bananas", "pears"];
-const vegetables = ["corn", "potatoes", "carrots"];
+// const fruits = ["apples", "bananas", "pears"];
+// const vegetables = ["corn", "potatoes", "carrots"];
+//
+// let  [fruit, ...egetables] = fruits;
+//
+// console.log(egetables);
 
-let  [fruit, ...egetables] = fruits;
 
-console.log(egetables);
+updateCustomer = function (id, ...values) {
+    console.log(id);
+    console.log(values);
+    for (let value of values) {
+        console.log(value);
+    }
+};
+
+updateCustomer(22, {stripeID: 'alo'}, {stripeID: 'alo2'});
